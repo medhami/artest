@@ -1,27 +1,33 @@
-<!DOCTYPE html>
 <html>
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image.prod.js"></script>
-  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/gh/hiukim/mind-ar-js@1.2.5/dist/mindar-image-aframe.prod.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.5/dist/mindar-image-aframe.prod.js"></script>
 </head>
+
 <body>
-  <a-scene mindar-image="imageTargetSrc: https://medhami.github.io/artest/targets.mind;"
-           vr-mode-ui="enabled: false"
-           device-orientation-permission-ui="enabled: false">
+    <a-scene
+      mindar-image="imageTargetSrc: ./my-target.mind;"
+      vr-mode-ui="enabled: false"
+      device-orientation-permission-ui="enabled: false">
 
-    <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+      <a-assets>
+        <!-- Váš obrázek -->
+        <img id="myImage" src="./moje-fotka.png">
+      </a-assets>
 
-    <a-entity mindar-image-target="targetIndex: 0">
-      <a-plane color="blue"
-               opacity="0.5"
-               position="0 0 0"
-               height="0.552"
-               width="1"
-               rotation="0 0 0"></a-plane>
-    </a-entity>
+      <a-camera look-controls="enabled: false"></a-camera>
 
-  </a-scene>
+      <!-- ZOBRAZENÍ VAŠEHO OBRÁZKU NA TARGETU -->
+      <a-entity mindar-image-target="targetIndex: 0">
+        <a-image
+          src="#myImage"
+          width="1"
+          height="0.7"
+          position="0 0 0"
+        ></a-image>
+      </a-entity>
+
+    </a-scene>
 </body>
 </html>
